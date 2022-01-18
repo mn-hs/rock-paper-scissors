@@ -1,0 +1,21 @@
+.rps {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.hero {
+  font-size: 42px;
+  font-weight: 800;
+  color: rgb(84, 10, 145);
+}
+
+.reload {
+  height: 24px;
+  width: auto;
+  background-color: rgb(40, 158, 255);
+  color: whitesmoke;
+  font-size: 14px;
+  border-radius: 6px;
+}
