@@ -6,16 +6,39 @@
 }
 
 .hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.header {
+  margin-bottom: 15px;
   font-size: 42px;
   font-weight: 800;
   color: rgb(84, 10, 145);
 }
 
+#moves {
+  width: 392px;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+#scoreBox {
+  height: 300px;
+  width: 392px;
+  border-radius: 8px;
+  padding: 8px;
+  margin: 10px;
+  background-color: rgb(136, 125, 145);
+}
+
 .reload {
   height: 24px;
   width: auto;
-  background-color: rgb(40, 158, 255);
+  background-color: rgb(40, 126, 255);
   color: whitesmoke;
   font-size: 14px;
-  border-radius: 6px;
+  border-radius: 10px;
 }
