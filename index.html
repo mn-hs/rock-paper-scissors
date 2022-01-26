@@ -5,13 +5,29 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="style.css">
-  <script src="script.js"></script>
+  <script src="script.js" defer></script>
   <title>Rock, paper, scissors.</title>
 </head>
 <body>
   <div class='rps'>
-    <p class='hero'> Rock, Paper, Scissors. </p>
+    
+    <div class='hero'> 
+      <p class='header'> Rock, Paper, Scissors. </p>
+    </div>
+
+    <div id='moves'>
+      <button id="rock"> Rock </button>
+      <button id="paper"> Paper </button>
+      <button id="scissors"> Scissors </button>
+    </div>
+    
+    <div id='scoreBox'>
+
+    </div>
+
+    <div class='footer'>
     <button class="reload" onClick="window.location.reload();">play again</button>
+    </div>
 </div>
 </body>
 </html>
