@@ -1,3 +1,47 @@
+//global variables
+let playerScore = 0;
+let computerScore = 0;
+
+//dom selectors and new elements
+const scoreBox = document.querySelector('#scoreBox');
+const pvc = document.querySelector('#pvc');
+const score = document.createElement('p');
+
+// listens for click event and inputs win messages/score
+const moves = document.querySelectorAll('#rock, #paper, #scissors');
+moves.forEach((move) => {
+  move.addEventListener('click', () => { 
+    const winMessage = document.createElement('p');
+    winMessage.textContent = playRound(move.id, computerMove());
+    scoreBox.appendChild(winMessage);
+
+    score.textContent = `Score - You: ${playerScore},  Computer: ${computerScore}`;
+    pvc.appendChild(score);
+
+    trackScore(playerScore, computerScore);
+  });
+});
+
+//stops game after certain number of rounds, refreshes page
+function trackScore(playerScore, computerScore) {
+  if (playerScore + computerScore == 5 && playerScore > computerScore) {
+    pvc.removeChild(score);
+    const win = document.createElement('p')
+    win.textContent = `You Win! ${playerScore} to ${computerScore}`
+    pvc.appendChild(win);
+    
+    window.setTimeout(function (){location.reload()},4000);
+  }
+  else if (playerScore + computerScore == 5 && playerScore < computerScore) {
+    pvc.removeChild(score);
+    const lose = document.createElement('p')
+    lose.textContent = `You Lose ${playerScore} to ${computerScore}`
+    pvc.appendChild(lose);
+    
+    window.setTimeout(function (){location.reload()},4000);
+  }
+}
+
 // returns random move
 function computerMove(){
   const moves = ['rock', 'paper', 'scissors'];
@@ -5,83 +49,39 @@ function computerMove(){
   return(computerPlay, moves[computerPlay]);
 }
 
-const moves = document.querySelectorAll('#rock, #paper, #scissors');
-moves.forEach((move) => {
-  move.addEventListener('click', () => {
-    if (move.id == 'rock'){
-      playRock();
-    }
-    else if (move.id == 'paper'){
-      playPaper();
-    }
-    else {
-      playScissors();
-    }
-  });
-});
-
-const scoreBox = document.querySelector('#scoreBox');
-
-function playRock(){
-  const inputRock = document.createElement('p');
-  inputRock.classList.add('inputRock')
-
-  if (computerMove() === 'rock') {
-    inputRock.textContent = 'Tie!';
+// returns win/loss message 
+function playRound(playerSelect, computerSelect) {
+  if (playerSelect === 'rock' && computerSelect === 'rock') {
+    return 'Tie!';
   } 
-  else if (computerMove() === 'scissors') {
-    inputRock.textContent = `You win! rock beats scissors`;
+  else if (playerSelect === 'paper' && computerSelect === 'paper') {
+    return 'Tie!';
+  } 
+  else if (playerSelect === 'scissors' && computerSelect === 'scissors') {
+    return 'Tie!';
+  } 
+  else if (playerSelect === 'rock' && computerSelect === 'scissors') {
     playerScore++;
+    return `You win! rock beats scissors`;
   } 
-  else {
-    inputRock.textContent = `You lose! rock loses to paper`;
-    computerScore++;
-  }
-
-  scoreBox.appendChild(inputRock)
-}
-
-function playPaper(){
-  const inputPaper = document.createElement('p');
-  inputPaper.classList.add('inputPaper')
-
-  if (computerMove() === 'paper') {
-    inputPaper.textContent = 'Tie!';
-  } 
-  else if (computerMove() === 'rock') {
-    inputPaper.textContent = `You win! paper beats rock`;
+  else if (playerSelect === 'paper' && computerSelect === 'rock') {
     playerScore++;
+    return `You win! paper beats rock`;
   } 
-  else {
-    inputPaper.textContent = `You lose! paper loses to scissors`;
-    computerScore++;
-  }
-
-  scoreBox.appendChild(inputPaper)
-}
-
-function playScissors(){
-  const inputScissors = document.createElement('p');
-  inputScissors.classList.add('inputScissors')
-
-  if (computerMove() === 'scissors') {
-    inputScissors.textContent = 'Tie!';
-  } 
-  else if (computerMove() === 'paper') {
-    inputScissors.textContent = `You win! scissors beats paper`;
+  else if (playerSelect === 'scissors' && computerSelect === 'paper') {
     playerScore++;
+    return `You win! scissors beats paper`;
   } 
-  else {
-    inputScissors.textContent = `You lose! scissors loses to rock`;
+  else if (playerSelect === 'rock' && computerSelect === 'paper') {
     computerScore++;
-  }
-
-  scoreBox.appendChild(inputScissors)
+    return `You lose! rock loses to paper`;
+  } 
+  else if (playerSelect === 'paper' && computerSelect === 'scissors') {
+    computerScore++;
+    return `You lose! paper loses to scissors`;
+  } 
+  else if (playerSelect === 'scissors' && computerSelect === 'rock') {
+    computerScore++;
+    return `You lose! scissors loses rock`;
+  } 
 }
-
-let playerScore = 0;
-let computerScore = 0;
-
-
-
- 
