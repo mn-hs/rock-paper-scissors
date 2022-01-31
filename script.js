@@ -6,12 +6,12 @@ let computerScore = 0;
 const scoreBox = document.querySelector('#scoreBox');
 const pvc = document.querySelector('#pvc');
 const score = document.createElement('p');
+const winMessage = document.createElement('p');
 
 // listens for click event and inputs win messages/score
 const moves = document.querySelectorAll('#rock, #paper, #scissors');
 moves.forEach((move) => {
   move.addEventListener('click', () => { 
-    const winMessage = document.createElement('p');
     winMessage.textContent = playRound(move.id, computerMove());
     scoreBox.appendChild(winMessage);
 
@@ -24,21 +24,11 @@ moves.forEach((move) => {
 
 //stops game after certain number of rounds, refreshes page
 function trackScore(playerScore, computerScore) {
-  if (playerScore + computerScore == 5 && playerScore > computerScore) {
-    pvc.removeChild(score);
-    const win = document.createElement('p')
-    win.textContent = `You Win! ${playerScore} to ${computerScore}`
-    pvc.appendChild(win);
+  if (playerScore == 5||computerScore == 5) {
+    score.textContent = `FINAL SCORE- You: ${playerScore}, Computer: ${computerScore}`
+    pvc.appendChild(score);
     
-    window.setTimeout(function (){location.reload()},4000);
-  }
-  else if (playerScore + computerScore == 5 && playerScore < computerScore) {
-    pvc.removeChild(score);
-    const lose = document.createElement('p')
-    lose.textContent = `You Lose ${playerScore} to ${computerScore}`
-    pvc.appendChild(lose);
-    
-    window.setTimeout(function (){location.reload()},4000);
+    window.setTimeout(function (){location.reload()},5000);
   }
 }
 
